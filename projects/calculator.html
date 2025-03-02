@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>calculator experiment</title>
+        <link rel="shortcut icon" type="image/png" href="../favicon2.png">
+    </head>
+    <body>
+        <h1>welcome to the calculator</h1>
+        <p>thank you thank you. press the button to calculate</p>
+        <p>currently supports additions, subtractions, divisions and multiplications</p>
+
+        <input type="number" placeholder="First number" id="Number1">
+        <select id="operator">
+            <option value="plus">+ (plus)</option>
+            <option value="minus">- (minus)</option>
+            <option value="times">* (times)</option>
+            <option value="divide">/ (divide)</option>
+        </select>
+        <input type="number" placeholder="Second number" id="Number2">
+
+        <button onclick="calculate()">calculate</button>
+        <br>
+        <br>
+        <h1 id="result"></h1>
+
+        <script>
+            function calculate() {
+    var num1 = document.getElementById('Number1').value;
+    var num2 = document.getElementById('Number2').value;
+
+    if (num1 === '' || num2 === '') {
+        document.getElementById('result').innerHTML = 'put a number in ya doofus';
+        return;
+    }
+
+    var sum = Number(num1) + Number(num2);
+    var difference = Number(num1) - Number(num2);
+    var product = Number(num1) * Number(num2);
+    var quotient = Number(num1) / Number(num2);
+
+    if (operator.value == "plus") {
+        document.getElementById('result').innerHTML = 'the answer is ' + sum;
+    }
+    if (operator.value == "minus") {
+        document.getElementById('result').innerHTML = 'the answer is ' + difference;
+    }
+    if (operator.value == "times") {
+        document.getElementById('result').innerHTML = 'the answer is ' + product;
+    }
+    if (operator.value == "divide") {
+        document.getElementById('result').innerHTML = 'the answer is ' + quotient;
+    }
+
+            }
+        </script>
+    </body>
+</html>

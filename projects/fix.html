@@ -1,0 +1,107 @@
+<html><head><link rel="shortcut icon" type="image/png" href="../favicon2.png"></head><body>
+                
+    <style>
+.modal {
+display: block; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+padding-top: 300px; /* Location of the box */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+background-color: #fefefe;
+margin: auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+}
+.close {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+</style>
+    
+    <title>Fix Checker</title>
+    
+    <h2>Check for Fixes</h2>
+    <label for="password">Fix ID: </label>
+    <input id="password">
+    <button id="accessbutton">Load</button>
+    <br>
+    <p id="status"><b></b></p>
+    
+    <p id="updates"></p>
+    <p id="fixes"></p>
+   
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+    <span class="close">×</span>
+    <h2>The fix checker has been deprecated</h2>
+    <p>No new fix updates will be displayed here. They are still accessable at the <a style="color:black;" href="terminal/cmd">LUXOS terminal.</a></p>
+    <p>Old fix updates can still be viewed here but will not show the actual current state of the project.</p>
+      </div>
+
+
+<script>
+function checkPassword() {
+var pass1 = "6823829770#55732&001";
+var pass2 = "0828392850#92883&103";
+var pass3 = "7770293852#18883&002";
+var pass4 = "1426284710#55920&000";
+var password = document.getElementById("password").value;
+if (password == pass1) {
+document.getElementById("status").innerHTML = `<b>Lemon Clicker 0.2.1 Status: <font color="green">online</font></b>`;
+document.getElementById("updates").innerHTML = `Last maintenance update was performed on December 19, 2024. Fixes to major issues <b>[SAVEFILE]</b> and <b>[SERVER.AUTOUPDATE]</b> were successful. Further examination is ongoing.`;
+  document.getElementById("fixes").innerHTML = `Repairs conducted: <b>[SAVEFILE], [SERVER.AUTOUPDATE], [EARLYACCESSENTRY]</b>`;
+} else if (password == pass2) {
+document.getElementById("status").innerHTML = `<b>luxorens website 1.3 Status: <font color="green">online</font></b>`;
+document.getElementById("updates").innerHTML = `Last maintenance update was performed on November 27, 2024. Fixes to major issue <b>[DEVICE.AUTOSCALE]</b> were successful.`;
+  document.getElementById("fixes").innerHTML = `Repairs conducted: <b>[DEVICE.AUTOSCALE], [ADMIN.GETPASS]</b>`;
+} else if (password == pass3) {
+document.getElementById("status").innerHTML = `<b>Scribbles 1.0 Status: <font color="green">online</font></b>`;
+document.getElementById("updates").innerHTML = `Last maintenance update was performed on October 23, 2024. No major issues were reported.`;
+  document.getElementById("fixes").innerHTML = `Repairs conducted: <b>[TEXTBOX]</b>`;
+} else if (password == pass4) {
+document.getElementById("status").innerHTML = `<b>Music 1.0 Status: <font color="green">online</font></b>`;
+document.getElementById("updates").innerHTML = `Last maintenance update was performed on January 6, 2025. No major issues were reported.`;
+  document.getElementById("fixes").innerHTML = `Repairs conducted: <b>[AUDIOPLAYER], [MP3.COMPATIBILITY]</b>`;
+}
+else {
+document.getElementById("status").innerHTML= "Invalid ID";
+document.getElementById("updates").innerHTML = "";
+document.getElementById("fixes").innerHTML = "";
+}
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+var button = document.getElementById("accessbutton");
+button.addEventListener("click", checkPassword);
+});
+</script>
+<script>
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+modal.style.display = "none";
+}
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}
+</script>
+</div></body></html>

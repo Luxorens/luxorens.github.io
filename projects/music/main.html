@@ -1,0 +1,474 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>music</title>
+        <link rel="shortcut icon" type="image/png" href="../../favicon2.png">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box; /* Ensure padding and border are included in width calculations */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit; /* Make sure all elements respect the box-sizing rule */
+}
+
+/* The container for the video */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent overflow on smaller screens */
+}
+
+/* Style the video */
+.video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Ensure the video stays behind the content */
+}
+
+/* Centered content over the video */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 0 20px; /* Add padding for mobile */
+}
+
+h1 {
+    font-size: 3em;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+/* Responsive typography for smaller screens */
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    p {
+        font-size: 1em;
+    }
+}
+
+/* Button styles */
+.newbutton {
+    padding: 5px 25px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    text-align: center;
+    margin-right: 20px;
+    display: inline-block;
+    width: auto;
+}
+.inactivebutton {
+    padding: 5px 25px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    background-color: transparent;
+    color: rgb(159, 159, 159);
+    border: 2px solid rgb(159, 159, 159);
+    cursor: not-allowed;
+    transition-duration: 0.3s;
+    text-align: center;
+    margin-right: 20px;
+    display: inline-block;
+    width: auto;
+}
+
+.newbutton:last-child {
+    margin-right: 0px;
+}
+
+.newbutton:active {
+    background-color: rgb(255, 255, 255);
+    color:black;
+}
+
+.password {
+    padding: 5px 15px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    text-align: center;
+    width: auto;
+}
+
+.password:focus {
+    outline: none;
+}
+
+/* Make images responsive */
+img {
+    width: 100%; /* Ensure the image container is full width */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 100%; /* Prevent the image from exceeding its container */
+    object-fit: contain; /* Scale the image to fit within the container without distortion */
+    display: block; /* Ensure no extra spacing around the image */
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+/* General responsiveness for typography */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Smaller base font size for smaller screens */
+    }
+
+    h1 {
+        font-size: 2rem; /* Smaller heading on mobile */
+    }
+
+    p {
+        font-size: 1rem; /* Smaller paragraph font size */
+    }
+
+    /* Adjust button size on mobile */
+    .newbutton {
+        font-size: 16px;
+        padding: 5px 15px;
+        width: 100%; /* Full-width on smaller screens */
+        margin-bottom: 10px; /* Space between buttons */
+    }
+    .inactivebutton {
+        font-size: 16px;
+        padding: 5px 15px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* For mobile phones (less than 480px wide) */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px; /* Even smaller font size for very small screens */
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Smaller heading */
+    }
+
+    /* Adjust button size on very small screens */
+    .newbutton {
+        font-size: 14px;
+        padding: 5px 10px;
+        width: 100%; /* Full-width button on small screens */
+        margin-bottom: 10px; /* Space between buttons */
+    }
+    .inactivebutton {
+        font-size: 14px;
+        padding: 5px 10px;
+        width: 100%; /* Full-width button on small screens */
+        margin-bottom: 10px; /* Space between buttons */
+    }
+
+    .password {
+        font-size: 14px; /* Adjust input size */
+        width: 100%; /* Full-width input on small screens */
+    }
+
+    /* Adjust the content container padding on very small screens */
+    .content {
+        padding: 0 10px;
+    }
+}
+
+.project {
+    padding: 3px 15px;
+    border: 2px solid white;
+    text-align: left;
+}
+
+/* Accordion styles */
+.accordion {
+    max-width: 600px;
+    margin: 0 auto;
+    border: none;
+    overflow: hidden;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background-color: transparent;
+    color: white;
+    padding: 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: 2px solid white;
+    outline: none;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-content {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: transparent;
+    text-align: left;
+    border: 2px solid white;
+}
+
+.accordion-content p {
+    padding: 15px 0;
+    margin: 0;
+}
+
+.active + .accordion-content {
+    max-height: 200px; /* Adjust this based on content */
+}
+
+/* Media Query for accordion mobile responsiveness */
+@media (max-width: 480px) {
+    .accordion-header {
+        font-size: 1rem; /* Smaller header on mobile */
+        padding: 10px; /* Adjust padding */
+    }
+
+    .accordion-content p {
+        padding: 10px 0; /* Adjust padding for accordion content */
+    }
+}
+.audio-player-box {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 2px solid white; /* White border */
+    background: rgba(0, 0, 0, 0.5); /* Transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.top-row,
+.bottom-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#seek-bar, #volume-bar {
+    flex-grow: 1;
+    appearance: none;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+#seek-bar::-webkit-slider-thumb, 
+#volume-bar::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.newbutton {
+    padding: 5px 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.newbutton:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.newbutton.small-button {
+    font-size: 12px;
+    padding: 3px 8px;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+.column {
+  float:left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+@media screen and (max-width: 500px) {
+  .column {
+    width: 100%;
+  }
+}
+
+        </style>
+    </head>
+
+    <body>
+<div class="video-container">
+        <video autoplay="" muted="" loop="">
+            <source src="https://file.garden/YwYuuT-uFAbhRorL/background2.mp4" type="video/mp4">
+        </video>
+
+    <div class="content"> <!-- Player -->
+        <h2>next song release</h2>
+        <h1 id="nextsongcountdown"></h1>
+        <br>
+<div style="overflow-y: scroll; height: 400px;">
+        <div class="project">
+            <h2>paranoid cover</h2>
+            <h5>this was a project me and my brother worked on and finished in 2 days. our first attempt at making a cover</h5>
+        <div class="audio-player-box">
+            <audio id="audio" src="https://file.garden/YwYuuT-uFAbhRorL/Paranoid.mp3"></audio>
+            <div class="top-row">
+                <button id="play-pause" class="newbutton small-button">l></button>
+                <input type="range" id="seek-bar" value="0" min="0" max="100">
+            </div>
+            <div class="bottom-row">
+                <button id="mute" class="newbutton small-button"><(=</button>
+                <input type="range" id="volume-bar" value="100" min="0" max="100">
+            </div>
+        </div>
+
+        <h4><b>released:</b> january 5th 2025</h4>
+        <h4><b>original:</b> black sabbath</h4>
+        <a title="cover art can also be seen here" style="color:white;" href="lyrics#paranoid" target="_blank"><u><h4 style="text-align: right;">song lyrics</h4></u></a>
+        </div>
+</div>
+    <br>
+        <a href="http://luxorens.atspace.tv"><button class="newbutton">return</button></a>
+        <h6>Fix ID: 1426284710#55920&000</h6>
+    </div>
+
+</div>
+        
+
+        <script>
+const audio = document.getElementById('audio');
+const playPauseButton = document.getElementById('play-pause');
+const seekBar = document.getElementById('seek-bar');
+const muteButton = document.getElementById('mute');
+const volumeBar = document.getElementById('volume-bar');
+
+// Format time (if needed for debugging)
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+// Play/Pause toggle
+playPauseButton.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+        playPauseButton.textContent = 'll';
+    } else {
+        audio.pause();
+        playPauseButton.textContent = '|>';
+    }
+});
+
+// Update seek bar as audio plays
+audio.addEventListener('timeupdate', () => {
+    const progress = (audio.currentTime / audio.duration) * 100;
+    seekBar.value = progress || 0; // Handle NaN for duration
+});
+
+// Seek functionality
+seekBar.addEventListener('input', () => {
+    audio.currentTime = (seekBar.value / 100) * audio.duration;
+});
+
+// Mute/Unmute toggle
+muteButton.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+    muteButton.textContent = audio.muted ? '<(x' : '<(=';
+});
+
+// Volume control
+volumeBar.addEventListener('input', () => {
+    audio.volume = volumeBar.value / 100;
+});
+        </script>
+        <script>
+var countDownDate = new Date("Mar 25, 2025 16:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("nextsongcountdown").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("nextsongcountdown").innerHTML = "EXPIRED";
+  }
+}, 1000);
+        </script>
+    </body>
+</html>
