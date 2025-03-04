@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>luxorens website</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+/* Reset and basic styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box; /* Ensure padding and border are included in width calculations */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit; /* Make sure all elements respect the box-sizing rule */
+}
+
+/* The container for the video */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent overflow on smaller screens */
+}
+
+/* Style the video */
+.video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Ensure the video stays behind the content */
+}
+
+/* Centered content over the video */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 0 20px; /* Add padding for mobile */
+}
+
+h1 {
+    font-size: 3em;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+/* Responsive typography for smaller screens */
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    p {
+        font-size: 1em;
+    }
+}
+
+/* Button styles */
+.newbutton {
+    padding: 5px 25px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    text-align: center;
+    margin-right: 20px;
+    display: inline-block;
+    width: auto;
+}
+.inactivebutton {
+    padding: 5px 25px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    background-color: transparent;
+    color: rgb(159, 159, 159);
+    border: 2px solid rgb(159, 159, 159);
+    cursor: not-allowed;
+    transition-duration: 0.3s;
+    text-align: center;
+    margin-right: 20px;
+    display: inline-block;
+    width: auto;
+}
+
+.newbutton:last-child {
+    margin-right: 0px;
+}
+
+.newbutton:hover {
+    padding: 5px 35px;
+    letter-spacing: 4px;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.newbutton:active {
+    background-color: rgb(255, 255, 255);
+    color:black;
+}
+
+.password {
+    padding: 5px 15px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    text-align: center;
+    width: auto;
+}
+
+.password:focus {
+    outline: none;
+}
+
+/* Make images responsive */
+img {
+    width: 100%; /* Ensure the image container is full width */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 100%; /* Prevent the image from exceeding its container */
+    object-fit: contain; /* Scale the image to fit within the container without distortion */
+    display: block; /* Ensure no extra spacing around the image */
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+/* General responsiveness for typography */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Smaller base font size for smaller screens */
+    }
+
+    h1 {
+        font-size: 2rem; /* Smaller heading on mobile */
+    }
+
+    p {
+        font-size: 1rem; /* Smaller paragraph font size */
+    }
+
+    /* Adjust button size on mobile */
+    .newbutton {
+        font-size: 16px;
+        padding: 5px 15px;
+        width: 100%; /* Full-width on smaller screens */
+        margin-bottom: 10px; /* Space between buttons */
+    }
+    .inactivebutton {
+        font-size: 16px;
+        padding: 5px 15px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* For mobile phones (less than 480px wide) */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px; /* Even smaller font size for very small screens */
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Smaller heading */
+    }
+
+    /* Adjust button size on very small screens */
+    .newbutton {
+        font-size: 14px;
+        padding: 5px 10px;
+        width: 100%; /* Full-width button on small screens */
+        margin-bottom: 10px; /* Space between buttons */
+    }
+    .inactivebutton {
+        font-size: 14px;
+        padding: 5px 10px;
+        width: 100%; /* Full-width button on small screens */
+        margin-bottom: 10px; /* Space between buttons */
+    }
+
+    .password {
+        font-size: 14px; /* Adjust input size */
+        width: 100%; /* Full-width input on small screens */
+    }
+
+    /* Adjust the content container padding on very small screens */
+    .content {
+        padding: 0 10px;
+    }
+}
+
+.project {
+    padding: 3px 15px;
+    border: 2px solid white;
+    text-align: left;
+}
+
+/* Accordion styles */
+.accordion {
+    max-width: 600px;
+    margin: 0 auto;
+    border: none;
+    overflow: hidden;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background-color: transparent;
+    color: white;
+    padding: 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: 2px solid white;
+    outline: none;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-content {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: transparent;
+    text-align: left;
+    border: 2px solid white;
+}
+
+.accordion-content p {
+    padding: 15px 0;
+    margin: 0;
+}
+
+.active + .accordion-content {
+    max-height: 200px; /* Adjust this based on content */
+}
+
+/* Media Query for accordion mobile responsiveness */
+@media (max-width: 480px) {
+    .accordion-header {
+        font-size: 1rem; /* Smaller header on mobile */
+        padding: 10px; /* Adjust padding */
+    }
+
+    .accordion-content p {
+        padding: 10px 0; /* Adjust padding for accordion content */
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay="" muted="" loop="">
+            <source src="https://file.garden/YwYuuT-uFAbhRorL/background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="content" id="div1">
+            <h1>404</h1>
+            <p>this page is non-existent</p>
+            <a href="http://luxorens.atspace.tv/"><button class="newbutton">go to luxorens website</button></a>
+        </div>
+
+
+    <script>
+            /* load main page with enter button*/
+            function switchDivs() {
+            $('#div1').fadeOut(500, function() {
+                $('#div2').fadeIn(1000);
+            });
+            var button = document.getElementById("enterbutton");
+            button.style.pointerEvents = "none";
+            button.style.color = "black";
+            button.style.border = "2px solid white";
+            button.style.letterSpacing = "4px";
+            button.style.padding = "5px 35px";
+            button.style.backgroundColor = "rgba(255, 255, 255, 1)";
+        }
+
+            /* admin access*/
+            function loadAdmin() {
+                $('#div2').fadeOut(100, function() {
+                $('#admin').fadeIn(500);
+            });
+            }
+            function returnAdmin() {
+                $('#admin').fadeOut(300, function() {
+                $('#div2').fadeIn(500);
+            });
+            }
+            function accessAdmin() {
+                var button = document.getElementById("accessadmin");
+                var password = document.getElementById("pswd");
+                if (password.value == "3025") {
+                    alert("works");
+                }
+            }
+
+            /* load and deload question div*/
+            function loadQuestion() {
+                $('#div2').fadeOut(100, function() {
+                $('#questions').fadeIn(500);
+            });
+            }
+            function returnQuestions() {
+                $('#questions').fadeOut(300, function() {
+                $('#div2').fadeIn(500);
+            });
+
+            /* load and deload projects div*/
+            }
+            function loadProjects() {
+                $('#div2').fadeOut(100, function() {
+                $('#projects').fadeIn(500);
+            });
+            }
+            function returnProjects() {
+                $('#projects').fadeOut(300, function() {
+                $('#div2').fadeIn(500);
+            });
+            }
+    </script>
+
+<script>
+    /* accordion script*/
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', function () {
+            this.classList.toggle('active');
+
+            const content = this.nextElementSibling;
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                accordionHeaders.forEach(h => {
+                    if (h !== this && h.classList.contains('active')) {
+                        h.classList.remove('active');
+                        h.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    });
+</script>
+
+<script>
+    /* admin access password script*/
+    function checkPassword() {
+        var confirmPassword = "63589";
+        var password = document.getElementById("password").value;
+        if (password == confirmPassword) {
+            document.getElementById("failtext").style.display = "";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var button = document.getElementById("accessbutton");
+        button.addEventListener("click", buttonClicked);
+    })
+</script>
+
+    <!-- to any and all crew that find this note, sequence is 63589. don't forget it-->
+    <!-- yo boy blake-->
+
+
+</body></html>
