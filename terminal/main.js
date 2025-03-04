@@ -36,6 +36,11 @@ $('body').terminal({
         await delay(1500);
         this.echo("\nLoaded: Scribbles v1.1.1\nStatus: [[;green;]ONLINE]\n\nAuto-log:\nLast maintenance update was performed on February 4, 2025. No major issues were reported.\n\nRepairs conducted:\n[COMMENT-SUBMITTER], [JUMPTOCOMMENTS]\n");
       }
+      else if (id == "5553840168#31056&000") {
+        this.echo("ID accepted. Fetching...");
+        await delay(1500);
+        this.echo("\nLoaded: theluxengine v1.5\nStatus: [[;yellow;]SERVICE-STANDBY]\n\nAuto-log:\nService is currently on standby. Projects and websites associated with the service are still online.\nLast maintenance update was performed on Februrary 27, 2025. Fixes to major issues [ENGINE-HOTWORK], [CONTACTSUBMISSION] and [LXCODECFILESERVICE] were successful.\n\nRepairs conducted:\n[ENGINE-HOTWORK], [CONTACTSUBMISSION], [LXCODECFILESERVICE]\n");
+      }
       else if (id == "3468591222#00127&456") {
       this.echo("ID accepted. Fetching...");
       await delay(1500);
