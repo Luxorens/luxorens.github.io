@@ -131,13 +131,27 @@ p {
 }
 
 /* Make images responsive */
-img {
+img.responsive-image {
     width: 100%; /* Ensure the image container is full width */
     height: auto; /* Maintain the aspect ratio */
-    max-width: 100%; /* Prevent the image from exceeding its container */
     object-fit: contain; /* Scale the image to fit within the container without distortion */
     display: block; /* Ensure no extra spacing around the image */
     margin: 0 auto; /* Center the image horizontally */
+}
+
+img {
+    max-width:100%;
+    width: 100%; /* Ensure the image container is full width */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: contain; /* Scale the image to fit within the container without distortion */
+    display: block; /* Ensure no extra spacing around the image */
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+@media (max-width: 768px) {
+    img.responsive-image {
+        content: url('launchpadimagemobile.png'); /* Change the image source */
+    }
 }
 
 /* General responsiveness for typography */
@@ -286,7 +300,7 @@ img {
         <!-- main page-->
         <div class="content" id="div2" style="display: none;">
             <h1>latest things</h1>
-            <img style="width:480px;height:270px;" src="noimage.png" alt="image content">
+            <img class="responsive-image" style="width:480px;height:270px;" src="launchpadimage.png" alt="image content">
             <h4>brand new domain! this is better</h4>
             <button id="questionbutton" onclick="loadQuestion()" class="newbutton">questions</button>
             <button id="projectbutton" onclick="loadProjects()" class="newbutton">projects</button>
