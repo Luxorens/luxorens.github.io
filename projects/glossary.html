@@ -1,0 +1,51 @@
+<html><head>
+<title>glossary thing</title>
+<link rel="shortcut icon" type="image/png" href="../favicon2.png">
+</head>
+<body>
+
+<h1>glossary thing</h1>
+<p>put word lists in then translate them</p>
+
+<textarea placeholder="Language 1. Ex:
+
+Je suis retourne
+Il a mange
+Tu es reste" id="myTextarea" rows="10" cols="30"></textarea>
+<br>
+<textarea placeholder="Lanugage 2. Ex:
+
+I have returned
+He has eaten
+You have stayed" id="userListTextarea" rows="10" cols="30"></textarea>
+<br>
+<button onclick="checkLines()">Do it</button>
+
+<div id="output"></div>
+
+
+<script>
+function checkLines() {
+    var textareaContent = document.getElementById('myTextarea').value;
+    var lines = textareaContent.split('\n');
+    var userListContent = document.getElementById('userListTextarea').value;
+    var userList = userListContent.split('\n');
+
+    var outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = '';
+
+    lines.forEach(function(line, index) {
+        if (index < userList.length) {
+            var userResponse = prompt(line.trim());
+
+            if (userResponse.trim() === userList[index].trim()) {
+                outputDiv.innerHTML += `<p><font color="green">${index + 1}:</font> Correct</p>`;
+            } else {
+                outputDiv.innerHTML += `<p><font color="red">${index + 1}:</font> Incorrect. You wrote  <font color="red">"${userResponse}"</font>. Correct answer is <font color="blue">"${userList[index]}".</font></p>`;
+            }
+        }
+    });
+}
+</script>
+
+</body></html>
