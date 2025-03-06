@@ -89,6 +89,6 @@ $('body').terminal({
             }
         }
 }, {
-    greetings: 'LUXOS TERMINAL v1.1\nEnter help for a list of commands\n',
+    greetings: 'LUXOS TERMINAL v1.2\nEnter help for a list of commands\n',
     prompt: ">"
 });
