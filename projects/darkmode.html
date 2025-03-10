@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>dark mode thing</title>
+<link rel="shortcut icon" type="image/png" href="../favicon2.png">
+</head>
+<body>
+<style>
+body {
+transition-duration:0.2s;
+font-family: sans-serif;
+}
+
+.dark-mode {
+transition-duration:0.2s;
+background-color: #000000;
+color: #ffffff;
+}
+
+button {
+background-color:#333333;
+color:white;
+border: 2px solid #333333;
+padding: 5px 15px;
+font-size: 20px;
+cursor:pointer;
+transition-duration:0.2s;
+}
+
+button:hover {
+background-color:#f0f0f0;
+color:black;
+border: 2px solid #f0f0f0;
+padding:5px 25px;
+}
+
+button:active {
+transition-duration:0s;
+background-color:#111111;
+color:white;
+border: 2px solid black;
+}
+
+.FORCEWHITEMODE {
+color:white;
+}
+</style>
+
+<h1>would you like some dark mode</h1>
+<p>press the button. copyright me 2025 you cannot use this for anything do you hear that I made this nobody else did ok I hope you understand that OK DO YOU UNDERSTAND THAT? good</p>
+
+<button onclick="darkmode()">click for dark mode</button>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h6 class="FORCEWHITEMODE">haha dark mode go brrr</h6>
+
+<script>
+function darkmode() {
+	var element = document.body;
+    element.classList.toggle("dark-mode");
+}
+</script>
+</body>
+</html>
