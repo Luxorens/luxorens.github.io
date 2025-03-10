@@ -19,7 +19,7 @@ $('body').terminal({
       if (id == "0828392850#92883&103") {
           this.echo("ID accepted. Fetching...");
           await delay(150); //ms (2500 is 2 seconds)
-          this.echo("\nLoaded: luxorens' website v1.3\nStatus: [[;green;]ONLINE]\n\nAuto-log:\nLast maintenance update was performed on November 27, 2024. Fixes to major issue [DEVICE.AUTOSCALE] were successful.\n\nRepairs conducted:\n[DEVICE.AUTOSCALE], [ADMIN.GETPASS]\n");
+          this.echo("\nLoaded: luxorens' website v1.4\nStatus: [[;green;]ONLINE]\n\nAuto-log:\nLast maintenance update was performed on November February 28, 2025. Fixes to major issues [IMAGERESCALE] and [DOMAIN.CNAMEPOINTER] were successful.\n\nRepairs conducted:\n[IMAGERESCALE], [DOMAIN.CNAMEPOINTER]\n");
       }
       else if (id == "6823829770#55732&001") {
         this.echo("ID accepted. Fetching...");
