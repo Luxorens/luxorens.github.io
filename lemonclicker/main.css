@@ -1,0 +1,253 @@
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-image: url(images/80100.png);
+    background-repeat: repeat;
+}
+
+.interactButton {
+    background-color:#ffcc55;
+    border:#ffcc55;
+    border: 2px solid #ffcc55;
+}
+.interactButton:hover {
+    background-color: #d0a133;
+    border: 2px solid #d0a133;
+    cursor: pointer;
+}
+
+.sectionLeft {
+    float: left;
+    width: 80%;
+}
+.sectionRight {
+    float: right;
+    width: 20%;
+}
+.scoreContainer {
+    background-color: rgba(238, 238, 238, 0.6);
+    width: 50%;
+    padding: 10px;
+    border-radius:10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.clickerContainer img {
+    position: relative;
+    transition: all .05s ease-in-out;
+}
+.clickerContainer img:hover { transform: scale(1.10); cursor:pointer;}
+.clickerContainer img:active { transform: scale(0.99);}
+.clickerContainer {
+    position: relative;
+}
+
+.shopButton {
+    background-color: #FFEEA3;
+    transition: all .2s ease-in-out;
+    border-radius: 10px;
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+}
+
+.shopButton:hover {
+    background: #ffcc55;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.shopButton #image {
+    width: 64px;
+    height: 64px;
+}
+
+.shopButton #nameAndCost p {
+    margin: 0px;
+    width: 60%;
+}
+
+.shopButton #nameAndCost p:first-of-type {
+    font-size: 24px;
+}
+
+.sectionFooter {
+    margin-top: 20%;
+}
+
+.unselectable {
+    user-select: none;
+}
+
+#upgradeContainer img {
+    height: 64px;
+    width: 64px;
+}
+
+#upgradeContainer {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.upgradeItem {
+    display: flex;
+    align-items: center;
+    background-color: #FFEEA3;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.upgradeItem:hover {
+    background-color: #FFCC55;
+}
+
+.upgradeImage {
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
+}
+
+.upgradeDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.upgradeName {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.upgradeDescription {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.upgradeCost {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    color: #444;
+}
+
+#achievementPreContainer {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#achievementContainer {
+    background: rgba(255, 252, 224, 0.719);
+    padding: 20px;
+    width: 50%;
+    margin: 10% auto;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.images img {
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.images img:hover {
+    transform: scale(1.1);
+}
+
+#achievementContainer h3 {
+    margin: 0;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: 0.4s;
+}
+
+.achievementItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.achievementIcon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.achievementDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.achievementName {
+    font-weight: bold;
+    margin: 0;
+}
+
+.achievementDescription {
+    margin: 0;
+}
+
+
+
+
+
+/* tooltips */
+.tooltip {
+    display: inline-block;
+}
+
+.tooltip img {
+    width: 100%;
+    height: auto;
+}
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #ffd500a5;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lemon Clicker</title>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="sweetalert2.min.css">       
+<title>Lemon Clicker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Click lemons to make more lemons and use those lemons to make more lemons..." />
+
+<meta property="og:title" content="Lemon Clicker" />
+<meta property="og:description" content="Click lemons to make more lemons and use those lemons to make more lemons..." />
+<meta property="og:image" content="https://file.garden/YwYuuT-uFAbhRorL/clickpreview.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lemon Clicker" />
+<meta name="twitter:description" content="Click lemons to make more lemons and use those lemons to make more lemons..." />
+<meta name="twitter:image" content="https://file.garden/YwYuuT-uFAbhRorL/clickpreview.png" />
+    </head>
+
+    <body>
+        <div class="sectionLeft">
+            <center>
+                <div class="scoreContainer">
+                    <span id="score">0</span> Lemons <br>
+                    <span id="scorepersecond">0</span> Lemons per second
+                </div>
+                <br>
+                <div class="clickerContainer unselectable">
+                    <img src="images/lemon2.png" height="338px" width="263px;" id="clicker">
+                </div>
+            </center>
+
+            <div id="achievementPreContainer">
+                <div id="achievementContainer">
+                    <span class="close-btn" onclick="closeAchievements()">&times;</span>
+                    <h3>Achievements</h3>
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+            <div class="sectionFooter">
+                <h5>Lemon Clicker Beta 0.2.2    <a onclick="earlyaccess()" style="color:red;cursor: pointer;" title="WARNING: READ THIS"><i><u><b>!</b></u></i></a></h5>
+                <button class="interactButton" onclick="resetGame();">Reset Game</button>
+                <button class="interactButton" onclick="saveGame();">Save Game</button> <br>
+                <h5><a style="color:black;" href="changelog.html" target="_blank">View Changelog</a></h5>
+                <h5>Created by <a style="color:black;" href="http://luxorens.atspace.tv/" target="_blank">Luxorens</a></h5>
+                <h6>Fix ID: 6823829770#55732&001</h6>
+            </div>
+        </div>
+
+        <div class="sectionRight">
+            <div id ="upgradeContainer"></div>
+            <div id="shopContainer"></div>
+        </div>
+
+        <script src="main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="sweetalert2.min.js"></script>
+    </body>
+
+</html>

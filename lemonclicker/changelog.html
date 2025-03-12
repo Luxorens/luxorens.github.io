@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Changelog</title>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="sweetalert2.min.css"> 
+    </head>
+    <body>
+    <center>
+        <h1>Lemon Clicker Changelog</h1>
+        <h4>All changes to Lemon Clicker, beta or full-release, will be listed here.</h4>
+        <br>
+        <h2>Beta 0.2.2</h2>
+        <p>- Added spoiler tags to changelog updates</p>
+        <p>- Achievement pop-up updated</p>
+        <p>- Achievement icons added</p>
+        <p>- Achievement menu reworked</p>
+        <br>
+        <h2>Beta 0.2.1</h2>
+        <p>- Tooltip over buildings added</p>
+        <p style="cursor:pointer;" id="spoiler3" onclick="sp3()"><u><i><b>- (Click to reveal spoiler update)</b></i></u></p>
+        <br>
+        <h2>Beta 0.2</h2>
+        <p>- New background added</p>
+        <p>- Updated lemon look</p>
+        <p>- Fixed AFK stats system causing decimals on lemon amount</p>
+        <p>- Click effect added</p>
+        <br>
+        <h2>Beta 0.1.4</h2>
+        <p>- New AFK lemon-stats system added</p>
+        <p style="cursor:pointer;" id="spoiler2" onclick="sp2()"><u><i><b>- (Click to reveal spoiler update)</b></i></u></p>
+        <p style="cursor:pointer;" id="spoiler1" onclick="sp1()"><u><i><b>- (Click to reveal spoiler update)</b></i></u></p>
+        <br>
+        <h2>Beta 0.1.3</h2>
+        <p>- W.I.P Achievement system added</p>
+        <p>- Console commands added</p>
+        <p>- CTRL-S to save added</p>
+        <br>
+        <h2>Beta 0.1.2</h2>
+        <p>- Introduction box added</p>
+        <p>- Upgrade system implemented</p>
+        <p>- Refreshed icons</p>
+        <br>
+        <h2>Beta 0.1.1</h2>
+        <p>- New buildings added</p>
+        <p>- New pop-up boxes design added</p>
+        <p>- Added autosave system</p>
+        <br>
+        <h2>Beta 0.1</h2>
+        <p>- Initial release with only structure complete and 2 buildings</p>
+        <br>
+        <img style="height:35%; width:35%;" src="images/wallwriting.png">
+    </center>
+    </body>
+    <script>
+        function sp3() {
+            document.getElementById("spoiler3").innerHTML = "";
+            document.getElementById("spoiler3").innerHTML = "- Mine building added";
+            document.getElementById("spoiler3").style.cursor = "default";
+        }
+        function sp2() {
+            document.getElementById("spoiler2").innerHTML = "";
+            document.getElementById("spoiler2").innerHTML = "- Discount upgrade added";
+            document.getElementById("spoiler2").style.cursor = "default";
+        }
+        function sp1() {
+            document.getElementById("spoiler1").innerHTML = "";
+            document.getElementById("spoiler1").innerHTML = "- Quick Fingers II upgrade added";
+            document.getElementById("spoiler1").style.cursor = "default";
+        }
+    </script>
+</html>
