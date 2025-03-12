@@ -534,16 +534,7 @@ function earlyaccess() {
         text: "Bugs, compatibility issues and fatal errors may occur! YOU MAY LOSE YOUR SAVE DATA IN A FUTURE UPDATE",
         showConfirmButton: true,
         confirmButtonText: 'I accept the risk'
-      }).then((result => {
-        Swal.fire({
-            position: "center",
-            icon: "info",
-            title: "Lemon Clicker is migrating",
-            text: "If you are starting a new game or continuing an existing game on this domain, please be aware that this website will be moved to luxorens.is-a.dev in a not-so-future update. This domain will shutdown along with all save-files when that update comes.",
-            showConfirmButton: true,
-            confirmButtonText: "I understand"
-        });
-      }));
+      });
 }
 
 const clicker = document.getElementById('clicker');
@@ -645,16 +636,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 text: "Bugs, compatibility issues and fatal errors may occur! YOU MAY LOSE YOUR SAVE DATA IN A FUTURE UPDATE",
                 showConfirmButton: true,
                 confirmButtonText: 'I accept the risk'
-              }).then((result => {
-                Swal.fire({
-                    position: "center",
-                    icon: "info",
-                    title: "Lemon Clicker is migrating",
-                    text: "If you are starting a new game on this domain, please be aware that this website will be moved to luxorens.is-a.dev in a not-so-future update. This domain will shutdown when that update comes.",
-                    showConfirmButton: true,
-                    confirmButtonText: 'I understand'
-                });
-              }));
+              });
           }));
         //flags that the user has visited
         localStorage.setItem('hasVisited', 'true');

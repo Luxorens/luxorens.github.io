@@ -24,7 +24,7 @@ $('body').terminal({
       else if (id == "6823829770#55732&001") {
         this.echo("ID accepted. Fetching...");
         await delay(1500);
-        this.echo("\nLoaded: Lemon Clicker v0.2.1\nStatus: [[;green;]ONLINE]\n\nAuto-log:\nLast maintenance update was performed on December 19, 2024. Fixes to major issues [SAVEFILE] and [SERVER.AUTOUPDATE] were successful. Further examination is ongoing.\n\nRepairs conducted:\n[SAVEFILE], [SERVER.AUTOUPDATE], [EARLYACCESSENTRY]\n");
+        this.echo("\nLoaded: Lemon Clicker v0.2.2\nStatus: [[;green;]ONLINE]\n\nAuto-log:\nLast maintenance update was performed on December 19, 2024. Fixes to major issues [SAVEFILE] and [SERVER.AUTOUPDATE] were successful. Examination is complete.\n\nRepairs conducted:\n[SAVEFILE], [SERVER.AUTOUPDATE], [EARLYACCESSENTRY]\n\nExamination:\nLikely cause of fault was due to a broken JS file not being uploaded to host-server properly. This was patched but changes took longer than anticipated to commit.\n");
       }
       else if (id == "1426284710#55920&000") {
         this.echo("ID accepted. Fetching...");
