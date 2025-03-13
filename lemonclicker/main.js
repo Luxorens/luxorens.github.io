@@ -504,7 +504,7 @@ function toggleAchievements() {
 }
 
 function messageSent() {
-    document.getElementsById("submitform").style.display = "none";
+    document.getElementById("submitform").style.display = "none";
     document.getElementById("submittext").innerHTML = "Bug submitted";
 }
 
