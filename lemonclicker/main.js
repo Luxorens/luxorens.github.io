@@ -96,7 +96,7 @@ var achievements = {
     image: [
         "businessstarter.png",
         "standsgalore.png",
-        "placeholder.png",
+        "richinlemons.png",
         "placeholder.png",
         "placeholder.png",
         "placeholder.png"
@@ -194,8 +194,8 @@ var upgrade = {
     ],
     type: [
         "buildings",
-        "click",
-        "click"
+        "lemons",
+        "lemons"
     ],
     cost: [
         300,
@@ -278,7 +278,7 @@ var display = {
     
                 if (upgrade.type[i] === "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]) {
                     upgradeAvailable = true;
-                } else if (upgrade.type[i] === "click" && game.totalClicks >= upgrade.requirement[i]) {
+                } else if (upgrade.type[i] === "lemons" && game.totalClicks >= upgrade.requirement[i]) {
                     upgradeAvailable = true;
                 }
     

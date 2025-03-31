@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Asker</title>
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+    <div id="launchpad">
+        <h4>Asker only supports yes/no questions</h4>
+        <h5>Asker may get some questions wrong. It can also get them right</h5>
+        <button id="confirmbutton" onclick="confirmAccess()">Okay</button>
+    </div>
+
+    <div id="main" style="display:none;">
+        <h1 id="answer">Ask a Question</h1>
+        <div id="questionbox">
+            <h4></h4>
+            <input id="question" placeholder="Question..." onkeypress="askEnter(event)">
+            <br>
+            <br>
+            <button onclick="ask()">Ask</button>
+        </div>
+        <h4 id="answerdesc"></h4>
+        <h4 id="alertwarning"></h4>
+        <button id="retry" style="display: none;" onclick="retry()">Try another</button>
+    </div>
+
+<script src="main.js"></script>
+    </body>
+</html>
