@@ -21,7 +21,7 @@ function ask() {
     const loadingText = "Thinking";
     let dots = 0;
     let count = 0;
-    const maxCycles = Math.floor((Math.random() * 4) + 1);;
+    const maxCycles = Math.floor((Math.random() * 6) + 1);;
     const interval = 350;
 
     answer.innerHTML = loadingText;
@@ -52,7 +52,7 @@ function retry() {
     var answer = document.getElementById("answer");
     var answerdesc = document.getElementById("answerdesc");
     document.getElementById("retry").style.display = "none";
-    answer.innerHTML = "Ask a question";
+    answer.innerHTML = "Ask a Question";
     answerdesc.innerHTML = "";
     questionbox.style.display = "block";
     question.value = "";
