@@ -1,630 +1,138 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>luxorens website</title>
     <link rel="shortcut icon" type="image/png" href="favicon2.png">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-/* Reset and basic styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    box-sizing: border-box; /* Ensure padding and border are included in width calculations */
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit; /* Make sure all elements respect the box-sizing rule */
-}
-
-/* The container for the video */
-.video-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; /* Prevent overflow on smaller screens */
-}
-
-/* Style the video */
-.video-container video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    z-index: -1; /* Ensure the video stays behind the content */
-}
-
-/* Centered content over the video */
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    font-family: Arial, sans-serif;
-    padding: 0 20px; /* Add padding for mobile */
-}
-
-h1 {
-    font-size: 3em;
-}
-
-p {
-    font-size: 1.5em;
-}
-
-/* Responsive typography for smaller screens */
-@media only screen and (max-width: 600px) {
-    h1 {
-        font-size: 2em;
-    }
-    p {
-        font-size: 1em;
-    }
-}
-
-/* Button styles */
-.newbutton {
-    padding: 5px 25px;
-    font-size: 20px;
-    letter-spacing: 2px;
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    cursor: pointer;
-    transition-duration: 0.3s;
-    text-align: center;
-    margin-right: 20px;
-    display: inline-block;
-    width: auto;
-}
-.inactivebutton {
-    padding: 5px 25px;
-    font-size: 20px;
-    letter-spacing: 2px;
-    background-color: transparent;
-    color: rgb(159, 159, 159);
-    border: 2px solid rgb(159, 159, 159);
-    cursor: not-allowed;
-    transition-duration: 0.3s;
-    text-align: center;
-    margin-right: 20px;
-    display: inline-block;
-    width: auto;
-}
-
-.newbutton:last-child {
-    margin-right: 0px;
-}
-
-.newbutton:hover {
-    padding: 5px 35px;
-    letter-spacing: 4px;
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.newbutton:active {
-    background-color: rgb(255, 255, 255);
-    color:black;
-}
-
-.password {
-    padding: 5px 15px;
-    color: white;
-    background-color: transparent;
-    border: 2px solid white;
-    text-align: center;
-    width: auto;
-}
-
-.password:focus {
-    outline: none;
-}
-
-/* Make images responsive */
-img.responsive-image {
-    width: 100%; /* Ensure the image container is full width */
-    height: auto; /* Maintain the aspect ratio */
-    object-fit: contain; /* Scale the image to fit within the container without distortion */
-    display: block; /* Ensure no extra spacing around the image */
-    margin: 0 auto; /* Center the image horizontally */
-}
-
-img {
-    max-width:100%;
-    width: 100%; /* Ensure the image container is full width */
-    height: auto; /* Maintain the aspect ratio */
-    object-fit: contain; /* Scale the image to fit within the container without distortion */
-    display: block; /* Ensure no extra spacing around the image */
-    margin: 0 auto; /* Center the image horizontally */
-}
-
-@media (max-width: 768px) {
-    img.responsive-image {
-        content: url('launchpadimagemobile.png'); /* Change the image source */
-    }
-}
-
-/* General responsiveness for typography */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px; /* Smaller base font size for smaller screens */
-    }
-
-    h1 {
-        font-size: 2rem; /* Smaller heading on mobile */
-    }
-
-    p {
-        font-size: 1rem; /* Smaller paragraph font size */
-    }
-
-    /* Adjust button size on mobile */
-    .newbutton {
-        font-size: 16px;
-        padding: 5px 15px;
-        width: 100%; /* Full-width on smaller screens */
-        margin-bottom: 10px; /* Space between buttons */
-    }
-    .inactivebutton {
-        font-size: 16px;
-        padding: 5px 15px;
-        width: 100%;
-        margin-bottom: 10px;
-    }
-}
-
-/* For mobile phones (less than 480px wide) */
-@media (max-width: 480px) {
-    body {
-        font-size: 12px; /* Even smaller font size for very small screens */
-    }
-
-    h1 {
-        font-size: 1.5rem; /* Smaller heading */
-    }
-
-    /* Adjust button size on very small screens */
-    .newbutton {
-        font-size: 14px;
-        padding: 5px 10px;
-        width: 100%; /* Full-width button on small screens */
-        margin-bottom: 10px; /* Space between buttons */
-    }
-    .inactivebutton {
-        font-size: 14px;
-        padding: 5px 10px;
-        width: 100%; /* Full-width button on small screens */
-        margin-bottom: 10px; /* Space between buttons */
-    }
-
-    .password {
-        font-size: 14px; /* Adjust input size */
-        width: 100%; /* Full-width input on small screens */
-    }
-
-    /* Adjust the content container padding on very small screens */
-    .content {
-        padding: 0 10px;
-    }
-}
-
-.project {
-    padding: 3px 15px;
-    border: 2px solid white;
-    text-align: left;
-}
-
-/* Accordion styles */
-.accordion {
-    max-width: 600px;
-    margin: 0 auto;
-    border: none;
-    overflow: hidden;
-}
-
-.accordion-item {
-    margin-bottom: 10px;
-    overflow: hidden;
-}
-
-.accordion-header {
-    background-color: transparent;
-    color: white;
-    padding: 15px;
-    font-size: 1.2em;
-    cursor: pointer;
-    border: 2px solid white;
-    outline: none;
-    text-align: left;
-    transition: background-color 0.3s ease;
-}
-
-.accordion-content {
-    padding: 0 15px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    background-color: transparent;
-    text-align: left;
-    border: 2px solid white;
-}
-
-.accordion-content p {
-    padding: 15px 0;
-    margin: 0;
-}
-
-.active + .accordion-content {
-    max-height: 200px; /* Adjust this based on content */
-}
-
-/* Media Query for accordion mobile responsiveness */
-@media (max-width: 480px) {
-    .accordion-header {
-        font-size: 1rem; /* Smaller header on mobile */
-        padding: 10px; /* Adjust padding */
-    }
-
-    .accordion-content p {
-        padding: 10px 0; /* Adjust padding for accordion content */
-    }
-}
-
-
-    </style>
 </head>
 <body>
-    <div class="video-container">
-        <video autoplay="" muted="" loop="">
-            <source src="background.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+<style>
+body {
+background-color:black;
+color:green;
+font-family:consolas;
+}
+button {
+background-color:black;
+color:green;
+font-family:consolas;
+font-size: 13px;
+border: 2px solid green;
+cursor:pointer;
+padding:1px 8px;
+}
+input {
+background-color:black;
+color:green;
+font-family:consolas;
+font-size: 13px;
+border: 2px solid green;
+padding:1px 8px;
+outline: none;
+}
+</style>
 
-        <!-- launchpad-->
-        <div class="content" id="div1">
-            <p>you have loaded into</p>
-            <h1>luxorens website</h1>
-            <button id="enterbutton" class="newbutton" onclick="switchDivs()">enter</button>
-        </div>
+<div style="width:900px;">
+<p>You are not trusted. Authorization to enter is only permitted to a select amount of individuals. If you are among the trusted, please sign and continue.</p>
+</div>
 
-        <!-- main page-->
-        <div class="content" id="div2" style="display: none;">
-            <h1>latest things</h1>
-            <a target="_blank" href="projects/asker/main"><img title="re-direct to asker" class="responsive-image" style="width:480px;height:270px;" src="launchpadimage.png" alt="image content"></a>
-            <h4>new project! ask a question and it will answer</h4>
-            <button id="questionbutton" onclick="loadQuestion()" class="newbutton">questions</button>
-            <button id="projectbutton" onclick="loadProjects()" class="newbutton">projects</button>
-            <button class="newbutton" onclick="loadAdmin()">admin</button>
-            <h6>Fix ID: 0828392850#92883&103 - powered with theluxengine and <a style="color:white;" target="_blank" href="http://luxorens.ueuo.com/">luxpanel</a></h6>
-        </div>
+<div style="display: flex; gap: 8px;">
+<button id="grantentry" onclick="entry()">grant entry</button>
+<button id="tempkey" onclick="tempkey()">temp key</button>
+<button id="help" onclick="help()">help</button>
+<input style="display:none;" id="ask" placeholder="ask question" onkeypress="ask(event)">
+</div>
 
-        <!-- questions-->
-        <div class="content" id="questions" style="display: none;">
-            <h1>questions</h1>
-            <br>
-
-            <div style="overflow-y: scroll; height: 400px;">
-            <div class="accordion">
-
-                <div class="accordion-item">
-                    <div class="accordion-header">Domain change? What's happening?</div>
-                    <div class="accordion-content">
-                        <h4>the hosting service I was using before (atspace) I found to be too slow sometimes. it also doesn't support proper ssl certificates so I switched to using github. I will probably use atspace again to work with mysql and php since github pages is a static provider</h4>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">What's happening with Lemon Clicker?</div>
-                    <div class="accordion-content">
-                        <h4>the game encountered a pretty serious issue where some save files were corrupted and the game became unplayable. I am not sure what the underlying problem is and I'm currently working on fixing it</h4>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">What the hell is this?</div>
-                    <div class="accordion-content">
-                        <h4>a website</h4>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">What's gonna happen to theluxsite?</div>
-                    <div class="accordion-content">
-                        <h4>it will stay abandoned indefinently</h4>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">Why is this here? Don't you have faqfool?</div>
-                    <div class="accordion-content">
-                        <h4>these are more serious questions, faqfool is just a hobbled up mess</h4>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">How did you achieve this without different html files?</div>
-                    <div class="accordion-content">
-                        <h4>I used div elements and button to toggle different ones</h4>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">Why isn't this new website on theLuxSite?</div>
-                    <div class="accordion-content">
-                        <h4>theluxsite is old and the domain coolpage.biz doesn't sound very trustworthy tbh</h4>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">What is this look supposed to mean?</div>
-                    <div class="accordion-content">
-                        <h4>the look doesn't mean anything, it's just the feeling I like. it's kinda mysterious</h4>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">What happened to Blake?</div>
-                    <div class="accordion-content">
-                        <h4>fired</h4>
-                    </div>
-                </div>
-
-                </div>
-                </div>
-
-                <button onclick="returnQuestions()" class="newbutton">return</button>
-            </div>
-        </div>
-
-        <!-- projects-->
-        <div id="projects" class="content" style="display: none;">
-            <h1>projects</h1>
-            <h4>things I've made and worked on and off</h4>
-            <br>
-
-            <div style="overflow-y: scroll; height: 400px;">
-            <div class="project">
-                <h5>updated: march 12 2025</h5>
-                <p>lemon clicker</p>
-                <h4>an experimental clicker game I made to test out some javascript features (not mobile optimized)</h4>
-                <a href="lemonclicker/game" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: march 31 2025</h5>
-                <p>asker</p>
-                <h4>magic eight ball online</h4>
-                <a href="projects/asker/main" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: september 18 2024</h5>
-                <p>calculator thing</p>
-                <h4>a calculator I made to test some operators in js (not mobile optimized)</h4>
-                <a href="projects/calculator" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: march 10 2025</h5>
-                <p>dark mode thing</p>
-                <h4>a switch test to toggle dark mode. mainly made for css testing purposes (not mobile optimized)</h4>
-                <a href="projects/darkmode" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: march 4 2025</h5>
-                <p>glossary thing</p>
-                <h4>a study tool I made to translate stuff and guess (not mobile optimized)</h4>
-                <a href="projects/glossary" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: january 24 2025</h5>
-                <p>fix checker</p>
-                <h4>a tool to check the mainetence updates on my projects</h4>
-                <a href="projects/fix" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: october 1 2024</h5>
-                <p>faqfool</p>
-                <h4>a website I made for asking questions and generally playing around with (also not mobile optimized)</h4>
-                <a href="https://faqfool.ueuo.com/" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: june 2 2024</h5>
-                <p>luxorens' blog</p>
-                <h4>a blog I made to document interesting parts of my life. I have no clue if I ever will use it again</h4>
-                <a href="https://luxorensblog.ueuo.com/" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: often</h5>
-                <p>scribbles</p>
-                <h4>thing I have to write down random thoughts and things</h4>
-                <a href="projects/scribbles" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: january 6 2025</h5>
-                <p>music</p>
-                <h4>page where you can listen to my songs</h4>
-                <a href="projects/music/main"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: march 3 2025</h5>
-                <p>theluxengine</p>
-                <h4>the engine used to power my projects</h4>
-                <a href="theluxengine/start" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="project">
-                <h5>updated: january 24 2025</h5>
-                <p>LUXOS terminal</p>
-                <h4>internalized command-prompt interface used for debugging and other stuff (not mobile optimized)</h4>
-                <a href="terminal/cmd" target="_blank"><button class="newbutton">try it</button></a>
-                <br>
-                <br>
-            </div>
-
-            </div>
-
-            <br>
-            <br>
-            <button class="newbutton" onclick="returnProjects()">return</button>
-            </div>
-            <!-- admin-->
-             <div id="admin" class="content" style="display: none;">
-                <h1>admin access</h1>
-                <input id="password" class="password" type="password">
-                <br>
-                <br>
-                <center>
-                <button id="accessbutton" onclick="checkPassword()" class="newbutton">access</button>
-                <button class="newbutton" onclick="returnAdmin()">return</button>
-                </center>
-                <h4 id="failtext" style="display: none;">nice try bozo</h4>
-             </div>
-        </div>
-
-
-    <script>
-            /* load main page with enter button*/
-            function switchDivs() {
-            $('#div1').fadeOut(500, function() {
-                $('#div2').fadeIn(1000);
-            });
-            var button = document.getElementById("enterbutton");
-            button.style.pointerEvents = "none";
-            button.style.color = "black";
-            button.style.border = "2px solid white";
-            button.style.letterSpacing = "4px";
-            button.style.padding = "5px 35px";
-            button.style.backgroundColor = "rgba(255, 255, 255, 1)";
-        }
-
-            /* admin access*/
-            function loadAdmin() {
-                $('#div2').fadeOut(100, function() {
-                $('#admin').fadeIn(500);
-            });
-            }
-            function returnAdmin() {
-                $('#admin').fadeOut(300, function() {
-                $('#div2').fadeIn(500);
-            });
-            }
-            function accessAdmin() {
-                var button = document.getElementById("accessadmin");
-                var password = document.getElementById("pswd");
-                if (password.value == "3025") {
-                    alert("works");
-                }
-            }
-
-            /* load and deload question div*/
-            function loadQuestion() {
-                $('#div2').fadeOut(100, function() {
-                $('#questions').fadeIn(500);
-            });
-            }
-            function returnQuestions() {
-                $('#questions').fadeOut(300, function() {
-                $('#div2').fadeIn(500);
-            });
-
-            /* load and deload projects div*/
-            }
-            function loadProjects() {
-                $('#div2').fadeOut(100, function() {
-                $('#projects').fadeIn(500);
-            });
-            }
-            function returnProjects() {
-                $('#projects').fadeOut(300, function() {
-                $('#div2').fadeIn(500);
-            });
-            }
-    </script>
+<div style="width:900px;">
+<p id="answertext"></p>
+<h4 id="accesstext"></h4>
+<div>
 
 <script>
-    /* accordion script*/
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-    accordionHeaders.forEach(header => {
-        header.addEventListener('click', function () {
-            this.classList.toggle('active');
-
-            const content = this.nextElementSibling;
-
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                accordionHeaders.forEach(h => {
-                    if (h !== this && h.classList.contains('active')) {
-                        h.classList.remove('active');
-                        h.nextElementSibling.style.maxHeight = null;
-                    }
-                });
-
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    });
-</script>
-
-<script>
-    /* admin access password script*/
-    function checkPassword() {
-        var confirmPassword = "63589";
-        var password = document.getElementById("password").value;
-        if (password == confirmPassword) {
-            document.getElementById("failtext").style.display = "";
-        }
+let retry = 0;
+let key;
+function entry() {
+	if (retry === 1) {
+    	document.getElementById("accesstext").innerHTML += "<";
+    } else {
+    	document.getElementById("accesstext").innerHTML = "Access denied. Automatic signature failed. ";
+    	retry = 1;
     }
+}
 
-    document.addEventListener("DOMContentLoaded", function() {
-        var button = document.getElementById("accessbutton");
-        button.addEventListener("click", buttonClicked);
-    })
+
+
+
+function tempkey() {
+    function makeid(length) {
+        var result          = '';
+        var characters      = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+    key = makeid(10);
+    document.getElementById("answertext").innerHTML = "Temporary key: " + key;
+}
+
+var sign = {key: function() {
+    var keyverify = prompt("INPUT KEY");
+    if (keyverify === key) {
+        console.log("Key accepted. Manual signature was completed, user was denied access.");
+    } else {
+        alert("INVALID KEY");
+        console.log("Key was invalid. No signature completed.");
+    }
+}};
+
+
+
+
+function help() {
+	document.getElementById("help").style.display = "none";
+    document.getElementById("ask").style.display = "block";
+}
+
+function ask(event) {
+var input = document.getElementById("ask");
+var answer = document.getElementById("answertext");
+    if (event.keyCode == 13) {
+
+        if (input.value == "help") {
+        	answer.innerHTML = `H: Help queries only support lowercase questions. Input questions in a manner such as "how do i get in" to get answers to your queries.`;
+        } else if (input.value == "") {
+            answer.innerHTML = "";
+	        document.getElementById("help").style.display = "block";
+            document.getElementById("ask").style.display = "none";
+        } else if (input.value == "help me") {
+            answer.innerHTML = `H: This is being presented as computer software data entries. Even so, there still has to be a person typing this. As much as I wish I could help you, this is the best I could do to answer your <i>query...</i>`;
+        } else if (input.value == "how do i get in") {
+            answer.innerHTML = `H: An automatic signature is applied to your entry request. If identification is failed (i.e you are not trusted), you will be denied access. Alternatively, a manual signature may be done if automaic signature fails for an authorized user.`;
+        } else if (input.value == "am i trusted") {
+            answer.innerHTML = `H: No. Any individual with an invalid or unclaimed signature is automatically flagged as "not trusted".`
+        } else if (input.value == "why am i not trusted") {
+            answer.innerHTML = `H: Any unrecognized device that enters this website will be automatically flagged as "not trusted" in order to enforce maximum security. This applies to any user with an unauthorized signature.`;
+        } else if (input.value == "manual signature") {
+            answer.innerHTML = `H: Manual signatures are signatures completed manually by the user using a key. Manual signatures are used if automatic signatures fail to complete for authorized users. They may also be used as an extra layer of security in the event of a server sabotage.`;
+        } else if (input.value == "temp key") {
+            answer.innerHTML = `H: Temporary keys are used for manual signatures if automatic signatures malfunction for authorized users. Command to manually sign is "sign.key()" in the browser console.`;
+        }
+        else {
+            answer.innerHTML = `H: Query not found.`;
+        }
+  		
+    }
+}
+
+window.onload = function() {
+    document.getElementById("ask").value = "";
+}
 </script>
 
-    <!-- to any and all crew that find this note, sequence is 63589. don't forget it-->
-    <!-- yo boy blake-->
+</body>
+</html>
 
-
-</body></html>
