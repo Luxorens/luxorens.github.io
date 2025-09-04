@@ -39,11 +39,12 @@
                     <h3>Achievements</h3>
                     <br>
                     <br>
+                    <div id="achievementsContainer"></div>
                 </div>
             </div>
 
             <div class="sectionFooter">
-                <h5>Lemon Clicker Beta 0.2.2    <a onclick="earlyaccess()" style="color:red;cursor: pointer;" title="WARNING: READ THIS"><i><u><b>!</b></u></i></a></h5>
+                <h5>Lemon Clicker Beta 0.2.3    <a onclick="earlyaccess()" style="color:red;cursor: pointer;" title="WARNING: READ THIS"><i><u><b>!</b></u></i></a></h5>
                 <button class="interactButton" onclick="resetGame();">Reset Game</button>
                 <button class="interactButton" onclick="saveGame();">Save Game</button> <br>
                 <h5><a style="color:black;" href="changelog.html" target="_blank">View Changelog</a></h5>
@@ -61,10 +62,16 @@
             </div>
         </div>
 
-        <div class="sectionRight">
-            <div id ="upgradeContainer"></div>
-            <div id="shopContainer"></div>
+<div class="sectionRight">
+    <div id="upgradesParent">
+        <div id="upgradeWrapper">
+            <div id="upgradeTooltip"></div>
+            <div id="upgradeContainer"></div>
         </div>
+    </div>
+    <div id="buildingTooltip"></div>
+    <div id="shopContainer"></div>
+</div>
 
         <script src="main.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

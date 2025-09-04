@@ -30,6 +30,7 @@ var game = {
         updateBuildingVisibility();
         display.updateScore();
         display.updateShop();
+        display.updateUpgrades();
     },
 
     getScorePerSecond: function() {
@@ -193,7 +194,7 @@ var upgrade = {
         "quickfingers2.png"
     ],
     type: [
-        "buildings",
+        "building",
         "lemons",
         "lemons"
     ],
@@ -210,7 +211,7 @@ var upgrade = {
     requirement: [
         10,
         90,
-        300
+        100
     ],
     bonus: [
         2,
@@ -221,20 +222,27 @@ var upgrade = {
 
     purchase: function(index) {
         if (!this.purchased[index] && game.score >= this.cost[index]) {
-            if (this.type[index] == "building" && building.count[this.buildingIndex[index]] >= this.requirement[index]) {
-                game.score -= this.cost[index];
+            let canPurchase = false;
+
+            if (this.type[index] === "building" &&
+                building.count[this.buildingIndex[index]] >= this.requirement[index]) {
+                canPurchase = true;
                 building.income[this.buildingIndex[index]] *= this.bonus[index];
-                this.purchased[index] = true;
+            } else if (this.type[index] === "lemons" &&
+                       game.totalScore >= this.requirement[index]) {
+                canPurchase = true;
+                game.clickValue *= this.bonus[index]; // doubles click value
+            }
 
-                display.updateUpgrades();
-                display.updateScore();
-            } else if (this.type[index] == "click" && game.totalClicks >= this.requirement[index]) {
+            if (canPurchase) {
                 game.score -= this.cost[index];
-                game.clickValue *= this.bonus[index];
                 this.purchased[index] = true;
 
                 display.updateUpgrades();
                 display.updateScore();
+
+                // Hide tooltip immediately after purchase
+                document.getElementById("upgradeTooltip").style.display = "none";
             }
         }
     }
@@ -247,55 +255,117 @@ var display = {
         document.title = formatNumber(game.score) + " lemons - Lemon Clicker";
     },
 
-    updateShop: function() {
-        document.getElementById("shopContainer").innerHTML = "";
-        for (let i = 0; i < building.name.length; i++) {
-            if (game.score >= building.unlockRequirement[i]) {
-                building.isVisible[i] = true; // Mark as visible if the requirement is met
+updateShop: function() {
+    const container = document.getElementById("shopContainer");
+    container.innerHTML = "";
+
+    for (let i = 0; i < building.name.length; i++) {
+        if (game.score >= building.unlockRequirement[i]) {
+            building.isVisible[i] = true;
+        }
+
+        if (building.isVisible[i]) {
+            const table = document.createElement("table");
+            table.className = "shopButton unselectable";
+            table.onclick = () => building.purchase(i);
+
+            table.innerHTML =
+                '<tr>' +
+                '<td id="image"><img src="images/' + building.image[i] + '"></td>' +
+                '<td id="nameAndCost">' +
+                '<p>' + building.name[i] + '</p>' +
+                '<p><span>' + formatNumber(building.cost[i]) + '</span> lemons</p>' +
+                '</td>' +
+                '<td id="amount"><span>' + building.count[i] + '</span></td>' +
+                '</tr>';
+
+            table.addEventListener("mouseenter", () => {
+                const tooltip = document.getElementById("buildingTooltip");
+                tooltip.innerHTML = `
+                    <strong>${building.name[i]}</strong><br>
+                    Cost: ${formatNumber(building.cost[i])} lemons<br>
+                    ${building.description[i]}
+                `;
+
+                // Make tooltip visible offscreen to measure it
+                tooltip.style.display = "block";
+                tooltip.style.left = "-9999px";
+
+                const rect = table.getBoundingClientRect();
+                const tooltipWidth = tooltip.offsetWidth;
+
+                // Position tooltip to the left of the table, but keep it on screen
+                let left = rect.left + window.scrollX - tooltipWidth - 10;
+                if (left < 0) left = rect.right + 10; // fallback: put on the right if too far left
+
+                tooltip.style.left = left + "px";
+                tooltip.style.top = rect.top + window.scrollY + "px";
+            });
+
+            table.addEventListener("mouseleave", () => {
+                document.getElementById("buildingTooltip").style.display = "none";
+            });
+
+            container.appendChild(table);
+        }
+    }
+},
+
+updateUpgrades: function() {
+    const container = document.getElementById("upgradeContainer");
+    container.innerHTML = "";
+
+    for (let i = 0; i < upgrade.name.length; i++) {
+        if (!upgrade.purchased[i]) {
+            let upgradeAvailable = false;
+
+            if (
+                upgrade.type[i] === "building" &&
+                building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]
+            ) {
+                upgradeAvailable = true;
+            } else if (
+                upgrade.type[i] === "lemons" &&
+                game.totalScore >= upgrade.requirement[i]
+            ) {
+                upgradeAvailable = true;
             }
 
-            if (building.isVisible[i]) {
-                document.getElementById("shopContainer").innerHTML += 
-                    '<table class="shopButton unselectable" onclick="building.purchase(' + i + ')" title="' + building.description[i] + '">' +
-                    '<tr>' +
-                    '<td id="image"><img src="images/' + building.image[i] + '"></td>' +
-                    '<td id="nameAndCost">' +
-                    '<p>' + building.name[i] + '</p>' +
-                    '<p><span>' + formatNumber(building.cost[i]) + '</span> lemons</p>' +
-                    '</td>' +
-                    '<td id="amount"><span>' + building.count[i] + '</span></td>' +
-                    '</tr>' +
-                    '</table>';
-            }
-        }
-    },
+            if (upgradeAvailable) {
+                // make grid item instead of card
+                const div = document.createElement("div");
+                div.className = "upgradeIcon";
+                div.onclick = () => upgrade.purchase(i);
 
-    updateUpgrades: function() {
-        document.getElementById("upgradeContainer").innerHTML = "";
-        for (let i = 0; i < upgrade.name.length; i++) {
-            if (!upgrade.purchased[i]) {
-                let upgradeAvailable = false;
-    
-                if (upgrade.type[i] === "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]) {
-                    upgradeAvailable = true;
-                } else if (upgrade.type[i] === "lemons" && game.totalClicks >= upgrade.requirement[i]) {
-                    upgradeAvailable = true;
-                }
-    
-                if (upgradeAvailable) {
-                    document.getElementById("upgradeContainer").innerHTML += `
-                        <div class="upgradeItem" onclick="upgrade.purchase(${i})">
-                            <img src="images/${upgrade.image[i]}" class="upgradeImage" alt="${upgrade.name[i]}">
-                            <div class="upgradeDetails">
-                                <p class="upgradeName">${upgrade.name[i]}</p>
-                                <p class="upgradeDescription">${upgrade.description[i]}</p>
-                                <p class="upgradeCost">${formatNumber(upgrade.cost[i])} lemons</p>
-                            </div>
-                        </div>`;
-                }
+                const img = document.createElement("img");
+                img.src = `images/${upgrade.image[i]}`;
+                img.alt = upgrade.name[i];
+                img.width = 48;
+                img.height = 48;
+                div.appendChild(img);
+
+                // tooltip handling
+                div.addEventListener("mouseenter", () => {
+                    const tooltip = document.getElementById("upgradeTooltip");
+                    tooltip.innerHTML = `
+                        <strong>${upgrade.name[i]}</strong><br>
+                        Cost: ${formatNumber(upgrade.cost[i])} lemons<br>
+                        ${upgrade.description[i]}
+                    `;
+                    tooltip.style.top = div.offsetTop + "px";
+                    tooltip.style.display = "block";
+                });
+
+                div.addEventListener("mouseleave", () => {
+                    document.getElementById("upgradeTooltip").style.display = "none";
+                });
+
+                container.appendChild(div);
             }
         }
-    },
+    }
+},
+
     
     updateAchievements: function() {
         document.getElementById("achievementsContainer").innerHTML = "";
@@ -572,7 +642,6 @@ document.getElementById("clicker").addEventListener("click", function() {
     game.totalClicks++;
     showClickEffect('+');
     game.addToScore(game.clickValue);
-    checkAchievements();
 }, false);
 
 window.onload = function() {
@@ -595,11 +664,11 @@ setInterval(function() {
     game.score += game.getScorePerSecond();
     game.totalScore += game.getScorePerSecond();
     display.updateScore();
+    checkAchievements();
 }, 1000); // 1000ms = 1 second
 
 setInterval(function() {
     display.updateScore();
-    display.updateUpgrades();
 }, 10000);
 
 setInterval(function() {
