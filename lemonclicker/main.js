@@ -210,8 +210,8 @@ var upgrade = {
     ],
     requirement: [
         10,
-        90,
-        100
+        1000,
+        100000
     ],
     bonus: [
         2,
@@ -792,4 +792,5 @@ document.addEventListener("visibilitychange", function() {
             title: `You produced ${formatNumber(lemonsProduced)} lemons while you were AFK.`
           });
     }
+
 });
