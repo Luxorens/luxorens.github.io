@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>magnificent mall</title>
+    </head>
+    <style>
+        @keyframes loadIntro {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        img {
+            max-width: 20%; /* takes the 100 % width of its container (.box div)*/
+            max-height: 20%; /* takes the 100 % height of its container (.box div)*/
+            object-fit:cover;
+        }
+        body {
+            background-color: #F7F7F7;
+            color: #888888;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            vertical-align: middle;
+            text-align: center;
+            flex-direction: column;
+            min-height: 100svh;
+            overflow: hidden;
+
+            font-family: "Courier New", monospace;
+            font-width: 200%;
+
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
+        @media (max-width:768px) {
+        img {
+            max-width: 50%; /* takes the 100 % width of its container (.box div)*/
+            max-height: 50%; /* takes the 100 % height of its container (.box div)*/
+            object-fit:cover;
+        }
+    }
+        .zoopanimcountdown {
+            animation: 2s ease-out 0s 1 loadIntro;
+        }
+        .zoopanimbutton {
+            animation: 2.5s ease-out 0s 1 loadIntro;
+        }
+
+        .mainbutton {
+            background-color: transparent;
+            color:#888888;
+            font-size: 15px;
+            padding:5px 15px;
+            font-family: "Courier New", monospace;
+            font-width: 200%;
+            border: 2px solid #888888;
+            cursor:pointer;
+            transition-duration: 0.4s;
+        }
+        .mainbutton:hover {
+            padding:5px 25px;
+        }
+        .maininput {
+            background-color: transparent;
+            color:#888888;
+            font-size: 15px;
+            padding:5px 30px;
+            font-family: "Courier New", monospace;
+            font-width: 200%;
+            border: 2px solid #888888;
+            transition-duration: 0.4s;
+        }
+    </style>
+    <body>
+            <img id="pear" src="pear2.png">
+            <h1 class="zoopanimcountdown" id="nextsongcountdown">&nbsp;</h1>
+
+            <button id="saybutton" class="zoopanimbutton mainbutton" onclick="sayit()">say something</button>
+
+            <h3 id="asked" style="display: none;">done. while you wait, stream the new single.</h3>
+            <form id="submitform" target="_blank" action="https://luxorens.ueuo.com/handler-pear.php" method="POST">
+                <input placeholder="is the pear real?" name="message" style="display: none;" id="sayit" class="maininput" onkeypress="enter(event)">
+            </form>
+
+            <a href="https://open.spotify.com/album/1yNiFaPStnv3UoxpcdtH3w?si=pk0leTCXSGCqjEAM5BnxPg" target="_blank"><button class="zoopanimbutton mainbutton" style="margin-top: 10px;">stream "making purchases"</button></a>
+            <p class="zoopanimbutton" id="changing-text" style="transition: opacity 0.5s;">welcome</p>
+        </body>
+
+
+        <script>
+var countDownDate = new Date("May 10, 2026 20:00:00").getTime();
+
+function updateCountdown() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  var el = document.getElementById("nextsongcountdown");
+
+  if (distance < 0) {
+    el.innerHTML = "FUCKASS BEATS VOL. 2 OUT NOW ON SPOTIFY AND ALL PLATFORMS";
+    clearInterval(x);
+  } else {
+    el.innerHTML = days + "d " + hours + "h " +
+                   minutes + "m " + seconds + "s ";
+  }
+}
+
+// run immediately
+updateCountdown();
+
+// then keep updating every second
+var x = setInterval(updateCountdown, 1000);
+
+document.getElementById('pear').ondragstart = function() { return false; };
+        </script>
+
+
+<script>
+    function sayit() {
+        document.getElementById('saybutton').style.display = "none";
+        document.getElementById('sayit').style.display = "block";
+    }
+    function enter(event) {
+    if (event.keyCode == 13) {
+        document.getElementById('sayit').style.display = "none";
+        document.getElementById('asked').style.display = "block";
+        form.submit();
+    }
+}
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault(); // stop page reload
+});
+</script>
+
+<script>
+  const texts = [`"is this an album?"`, `"can't wait, lux."`, `"the pear gives me mall vibes"`, `"my local mall doesn't have coconuts"`, `"why do pears exist?"`, `"who am I"`];
+  let index = 0;
+  const el = document.getElementById("changing-text");
+
+  setInterval(() => {
+    el.style.opacity = 0;
+
+    setTimeout(() => {
+      index = (index + 1) % texts.length;
+      el.innerHTML = texts[index];
+      el.style.opacity = 1;
+    }, 300);
+  }, 4000);
+</script>
+</html>
