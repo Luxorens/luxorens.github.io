@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>magnificent mall</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <style>
         @keyframes loadIntro {
@@ -146,7 +148,7 @@ form.addEventListener("submit", function(e) {
 </script>
 
 <script>
-  const texts = [`"is this an album?"`, `"can't wait, lux."`, `"the pear gives me mall vibes"`, `"my local mall doesn't have coconuts"`, `"why do pears exist?"`, `"who am I"`];
+  const texts = [`"is this an album?"`, `"can't wait, lux."`, `"the pear gives me mall vibes"`, `"my local mall doesn't have coconuts"`, `"why do pears exist?"`, `"who am I"`, `"life ain't chess"`, `"do you miss me?"`, `"I fear the pear sometimes..."`, `"please come back"`, `"where's the original site?"`, `"please"`, `"you're not answering me"`];
   let index = 0;
   const el = document.getElementById("changing-text");
 
@@ -158,6 +160,6 @@ form.addEventListener("submit", function(e) {
       el.innerHTML = texts[index];
       el.style.opacity = 1;
     }, 300);
-  }, 4000);
+  }, 5000);
 </script>
 </html>
