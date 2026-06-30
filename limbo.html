@@ -82,7 +82,9 @@
     <body>
             <h1 class="zoopanimcountdown" id="nextsongcountdown">&nbsp;</h1>
 
-            <button id="saybutton" class="zoopanimbutton mainbutton" onclick="sayit()">say something</button>
+            <a href="https://youtu.be/AsO377R8Nh0"><button id="mvbutton" class="zoopanimbutton mainbutton" style="display: none;">music video</button></a>
+
+            <button id="saybutton" class="zoopanimbutton mainbutton" style="margin-top: 10px;" onclick="sayit()">say something</button>
 
             <h3 id="asked" style="display: none;">done. while you wait, stream the new single.</h3>
             <form id="submitform" target="_blank" action="https://luxorens.ueuo.com/handler-pear.php" method="POST">
@@ -110,6 +112,7 @@ function updateCountdown() {
 
   if (distance < 0) {
     el.innerHTML = "permanent limbo mv out now";
+    document.getElementById("mvbutton").style.display = "block";
     clearInterval(x);
   } else {
     el.innerHTML = days + "d " + hours + "h " +
